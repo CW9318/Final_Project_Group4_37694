@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_23_164306) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_24_215243) do
+  create_table "evaluations", force: :cascade do |t|
+    t.integer "score"
+    t.text "comments"
+    t.integer "user_id", null: false
+    t.integer "presentation_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["presentation_id"], name: "index_evaluations_on_presentation_id"
+    t.index ["user_id"], name: "index_evaluations_on_user_id"
+  end
+
+  create_table "presentations", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "date"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_presentations_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -18,4 +39,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_23_164306) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "evaluations", "presentations"
+  add_foreign_key "evaluations", "users"
+  add_foreign_key "presentations", "users"
 end

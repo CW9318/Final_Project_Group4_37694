@@ -1,0 +1,9 @@
+<%= form_with url: redirect_user_path, method: :post do |form| %>
+  <h1>Welcome to the Presentation App</h1>
+
+  <p>Please select your role:</p>
+  <%= form.radio_button :role, "instructor" %> Instructor
+  <%= form.radio_button :role, "student" %> Student
+
+  <%= form.submit "Continue" %>
+<% end %>
