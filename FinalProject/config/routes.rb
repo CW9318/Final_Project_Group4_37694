@@ -2,11 +2,9 @@ Rails.application.routes.draw do
   get "home/index"
 
 
-  root "static_pages#home"
-  get 'home', to: "static_pages#home"
+  # root "static_pages#home"
+  # get 'home', to: "static_pages#home"
 
-
-  
   get 'new', to: 'users#new'
   post 'users', to: 'users#create'
 
@@ -22,4 +20,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  #Pages for HP, instructos, students
+  root "pages#home"     
+  get "instructor", to: "pages#instructor"  
+  get "student", to: "pages#student"
+
 end
